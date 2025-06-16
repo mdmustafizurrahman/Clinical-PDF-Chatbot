@@ -56,13 +56,17 @@ This project is an interactive biomedical chatbot that:
 ##  Installation
 
 1. Clone or download the project
-2. Install dependencies
+2. Create a virtual environment using Python3.10
+```bash
+python -m venv 
+```
+3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Place the following files in `data/` directory:
+4. Place the following files in `data/` directory:
    - `ClinVec_phecode.csv`
    - `ClinGraph_nodes.csv`
 
@@ -73,6 +77,10 @@ pip install -r requirements.txt
 ```bash
 streamlit run main.py
 ```
+Note: On the very first run, the app will download the google/flan-t5-base model from Hugging Face, which may take a few minutes. The model will be cached afterward for faster future use.
+
+Once the app is launched, you should be able to chat interactively, as shown in the screenshot below:
+![App Screenshot](app_screenshot.png)
 
 ---
 
@@ -115,18 +123,18 @@ This chatbot application incorporates both human feedback and automated evaluati
 Checks if the answer is grounded in the retrieved context using a pretrained entailment classifier (`roberta-large-mnli`).
 
 - **Labels**:
-  - `ENTAILMENT`: The answer is directly supported by the context ✅
-  - `NEUTRAL`: The answer is plausible but not clearly supported ⚠️
-  - `CONTRADICTION`: The answer contradicts the context ❌
+  - `ENTAILMENT`: The answer is directly supported by the context 
+  - `NEUTRAL`: The answer is plausible but not clearly supported 
+  - `CONTRADICTION`: The answer contradicts the context 
 - **Score**: Confidence score (range 0.0 – 1.0)
 
 #### 2. Relevance (via Sentence Embedding Similarity)
 Measures how semantically close the answer is to the question using cosine similarity between embeddings.
 
 - **Scale**:
-  - **> 0.8** → Highly relevant ✅
-  - **0.5–0.8** → Moderately relevant ⚠️
-  - **< 0.5** → Low relevance ❌
+  - **> 0.8** → Highly relevant 
+  - **0.5–0.8** → Moderately relevant 
+  - **< 0.5** → Low relevance 
 
 ### Use for Improvement
 

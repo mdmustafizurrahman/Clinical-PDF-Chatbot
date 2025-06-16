@@ -1,0 +1,10 @@
+streamlit
+transformers
+sentence-transformers
+faiss-cpu
+PyMuPDF
+torch
+nltk
+sacremoses
+accelerate
+torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
