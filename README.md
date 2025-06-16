@@ -37,7 +37,7 @@ This project is an interactive biomedical chatbot that:
 - Processes and chunks the content
 - Embeds it using sentence-transformers
 - Retrieves relevant clinical codes using ClinVec embeddings
-- Generates answers using an open LLM (`FLAN-T5-1.1B-Chat`)
+- Generates answers using an open LLM (`google/flan-t5-base`)
 - Tracks latency, and answer length
 
 ---
@@ -46,7 +46,7 @@ This project is an interactive biomedical chatbot that:
 
 -  Upload and chat over biomedical PDFs
 -  Retrieve relevant chunks using text and clinical code semantics
--  Powered by FLAN-T5-1.1B-Chat for chat-style answers
+-  Powered by `google/flan-t5-base` for chat-style answers
 -  Uses `ClinVec_phecode.csv` and `ClinGraph_nodes.csv` for clinical concept similarity
 -  Built-in evaluation: latency, and token count
 -  Export chat metrics to CSV
@@ -110,12 +110,11 @@ data/
 
 ## Evaluation Approach
 
-This chatbot application incorporates both human feedback and automated evaluation metrics to assess answer quality and guide continuous improvement.
+This chatbot application incorporates automated evaluation metrics to assess answer quality and guide continuous improvement.
 
 ### Business Metrics Logged
 - **Latency**: Time taken to generate a response.
 - **Answer Length**: Number of words in the response.
-- **User Feedback**: Collected via thumbs up/down (Yes/No radio).
 
 ### Automated Evaluation Metrics
 
@@ -140,7 +139,6 @@ Measures how semantically close the answer is to the question using cosine simil
 
 - Flag answers with low faithfulness or relevance for review.
 - Analyze metrics over time to tune prompts, improve retrieval, or switch models.
-- Correlate low scores with negative user feedback to prioritize refinements.
                  |
 
 All metrics are logged in memory and optionally exported to `chatbot_metrics.csv`.
@@ -197,7 +195,6 @@ Tested on:
 ```text
 Model Name: MacBook Air
 Model Identifier: Mac14,2
-Model Number: Z15S000D2LL/A
 Chip: Apple M2
 Total Number of Cores: 8 (4 performance and 4 efficiency)
 Memory: 16 GB
